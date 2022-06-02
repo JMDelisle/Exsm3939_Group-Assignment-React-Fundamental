@@ -1,7 +1,9 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MemoryCard from './components/MemoryCard';
 import Timer from './Timer';
+
+
 
 const images = [
   { "src": "/img/audi.jpg", matched: false },
@@ -21,7 +23,8 @@ function App() {
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
   const [disabled, setDisabled] = useState(false);
-  const [timerIdle, setTimerDisplay]= useSate(false);
+  const [timerIdle, setTimerDisplay]= useState(false);
+  
   
 
   // shuffle cards
@@ -34,14 +37,10 @@ function App() {
     setChoiceTwo(null);
     setCards(shuffle);
     setTurns(0);
-    setTimerDisplay(0);
+    //Timer.call.tick();
    }
 
-  setTimerDisplay()
-  {
-      timerIdle==true;
 
-  }
 
   // Handle a choice.
   const handleChoice = (card) => {
@@ -78,21 +77,21 @@ function App() {
     setChoiceOne(null);
     setChoiceTwo(null);
     setTurns(prevTurns => prevTurns + 1);
-    setDisabled(false);
+    setDisabled(false);    
   }
 
   // start a new game automatically
-  useEffect(() => {
-    shuffleCards();
-  }, [])
+ // useEffect(() => {
+  //  shuffleCards();
+ // }, [])
 
 
 
   return (
     <div className="App">
       <h1>"Match My Ride" the Memory Game</h1>
-      <button onClick={shuffleCards}>Start New Game</button>
-
+      <button onClick={shuffleCards}>Start New Game</button>  {/* onClick={() =>{shuffleCards();tick();}}  */}
+    <div className='hidden' id="timerDisplay">
       <div class="card-grid">
         {cards.map(card => (
           <MemoryCard
@@ -102,11 +101,11 @@ function App() {
             flipped={card === choiceOne || card === choiceTwo || card.matched}
             disabled={disabled}
           />
-        ))}
-      </div>
-      <div >
+        ))}     
+      
         <p>Turns: {turns}</p>
-        <p>Time: <Timer /></p>
+        <p>Seconds: <Timer /></p> 
+        </div>
       </div> 
     </div>
   );

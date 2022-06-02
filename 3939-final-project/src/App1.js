@@ -15,11 +15,11 @@ const images = [
 
 
 function App() {
-  const [cards, setCards] = useState([])
-  const [turns, setTurns] = useState(0)
-  const [choiceOne, setChoiceOne] = useState(null)
-  const [choiceTwo, setChoiceTwo] = useState(null)
-  const [disabled, setDisabled] = useState(false)
+  const [cards, setCards] = useState([]);
+  const [turns, setTurns] = useState(0);
+  const [choiceOne, setChoiceOne] = useState(null);
+  const [choiceTwo, setChoiceTwo] = useState(null);
+  const [disabled, setDisabled] = useState(false);
 
   // shuffle cards
   const shuffleCards = () => {
@@ -27,21 +27,21 @@ function App() {
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random() }))
 
-    setChoiceOne(null)
-    setChoiceTwo(null)
-    setCards(shuffle)
-    setTurns(0)
+    setChoiceOne(null);
+    setChoiceTwo(null);
+    setCards(shuffle);
+    setTurns(0);
   }
 
   // Handle a choice.
   const handleChoice = (card) => {
-    choiceOne ? setChoiceTwo(card) : setChoiceOne(card)
+    choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
   }
 
   // Compare two selected cards.
   useEffect(() => {
     if (choiceOne && choiceTwo) {
-      setDisabled(true)
+      setDisabled(true);
 
       if (choiceOne.src === choiceTwo.src) {
         setCards(prevCards => {
@@ -53,7 +53,7 @@ function App() {
             }
           })
         })
-        resetTurn()
+        resetTurn();
       } else {
 
         setTimeout(() => resetTurn(), 1000)
@@ -65,15 +65,15 @@ function App() {
 
   // Reset choices & increase turn.
   const resetTurn = () => {
-    setChoiceOne(null)
-    setChoiceTwo(null)
-    setTurns(prevTurns => prevTurns + 1)
-    setDisabled(false)
+    setChoiceOne(null);
+    setChoiceTwo(null);
+    setTurns(prevTurns => prevTurns + 1);
+    setDisabled(false);
   }
 
   // start a new game automatically
   useEffect(() => {
-    shuffleCards()
+    shuffleCards();
   }, [])
 
   return (

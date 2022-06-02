@@ -1,6 +1,6 @@
 import './App.css';
 import { useEffect, useState } from 'react';
-import SingleCard from './components/SingleCard';
+import MemoryCard from './components/MemoryCard';
 
 const images = [
   { "src": "/img/audi.jpg", matched: false },
@@ -83,7 +83,7 @@ function App() {
 
       <div class="card-grid">
         {cards.map(card => (
-          <SingleCard
+          <MemoryCard
             key={card.id}
             card={card}
             handleChoice={handleChoice}

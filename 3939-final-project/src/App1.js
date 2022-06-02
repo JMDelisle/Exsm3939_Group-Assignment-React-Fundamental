@@ -1,6 +1,7 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import MemoryCard from './components/MemoryCard';
+import Timer from './Timer';
 
 const images = [
   { "src": "/img/audi.jpg", matched: false },
@@ -20,6 +21,8 @@ function App() {
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
   const [disabled, setDisabled] = useState(false);
+  const [timerIdle, setTimerDisplay]= useSate(false);
+  
 
   // shuffle cards
   const shuffleCards = () => {
@@ -31,6 +34,13 @@ function App() {
     setChoiceTwo(null);
     setCards(shuffle);
     setTurns(0);
+    setTimerDisplay(0);
+   }
+
+  setTimerDisplay()
+  {
+      timerIdle==true;
+
   }
 
   // Handle a choice.
@@ -76,6 +86,8 @@ function App() {
     shuffleCards();
   }, [])
 
+
+
   return (
     <div className="App">
       <h1>"Match My Ride" the Memory Game</h1>
@@ -92,7 +104,10 @@ function App() {
           />
         ))}
       </div>
-      <p>Turns: {turns}</p>
+      <div >
+        <p>Turns: {turns}</p>
+        <p>Time: <Timer /></p>
+      </div> 
     </div>
   );
 }

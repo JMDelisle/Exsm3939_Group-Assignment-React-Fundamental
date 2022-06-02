@@ -17,8 +17,8 @@ const images = [
 function App() {
   const [cards, setCards] = useState([]);
   const [turns, setTurns] = useState(0);
-  const [choiceOne, setChoiceOne] = useState(null);
-  const [choiceTwo, setChoiceTwo] = useState(null);
+  const [cardOne, setCardOne] = useState(null);
+  const [cardTwo, setCardTwo] = useState(null);
   const [disabled, setDisabled] = useState(false);
 
   // shuffle cards
@@ -27,26 +27,26 @@ function App() {
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random() }))
 
-    setChoiceOne(null);
-    setChoiceTwo(null);
+    setCardOne(null);
+    setCardTwo(null);
     setCards(shuffle);
     setTurns(0);
   }
 
   // Handle a choice.
   const handleChoice = (card) => {
-    choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
+    cardOne ? setCardTwo(card) : setCardOne(card);
   }
 
   // Compare two selected cards.
   useEffect(() => {
-    if (choiceOne && choiceTwo) {
+    if (cardOne && cardTwo) {
       setDisabled(true);
 
-      if (choiceOne.src === choiceTwo.src) {
+      if (cardOne.src === cardTwo.src) {
         setCards(prevCards => {
           return prevCards.map(card => {
-            if (card.src === choiceOne.src) {
+            if (card.src === cardOne.src) {
               return { ...card, matched: true }
             } else {
               return card
@@ -59,14 +59,14 @@ function App() {
         setTimeout(() => resetTurn(), 1000)
       }
     }
-  }, [choiceOne, choiceTwo])
+  }, [cardOne, cardTwo])
 
   console.log(cards)
 
   // Reset choices & increase turn.
   const resetTurn = () => {
-    setChoiceOne(null);
-    setChoiceTwo(null);
+    setCardOne(null);
+    setCardTwo(null);
     setTurns(prevTurns => prevTurns + 1);
     setDisabled(false);
   }
@@ -87,7 +87,7 @@ function App() {
             key={card.id}
             card={card}
             handleChoice={handleChoice}
-            flipped={card === choiceOne || card === choiceTwo || card.matched}
+            flipped={card === cardOne || card === cardTwo || card.matched}
             disabled={disabled}
           />
         ))}

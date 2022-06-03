@@ -20,8 +20,8 @@ const images = [
 function App() {
   const [cards, setCards] = useState([]);
   const [turns, setTurns] = useState(0);
-  const [choiceOne, setChoiceOne] = useState(null);
-  const [choiceTwo, setChoiceTwo] = useState(null);
+  const [choiceOne, setCardOne] = useState(null);
+  const [choiceTwo, SetCardtwo] = useState(null);
   const [disabled, setDisabled] = useState(false);
   const [gameActive, setGameActive]= useState(false);    //This is to check boolean gameActive; is true, display timer/counter div.
   
@@ -32,8 +32,8 @@ function App() {
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random() }))
 
-    setChoiceOne(null);
-    setChoiceTwo(null);
+    setCardOne(null);
+    setCardTwo(null);
     setCards(shuffle);
     setTurns(0);
     
@@ -42,7 +42,7 @@ function App() {
 
   // Handle a choice.
   const handleChoice = (card) => {
-    choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
+    choiceOne ? setCardTwo(card) : setCardOne(card);
   }
 
   // Compare two selected cards.
@@ -72,8 +72,8 @@ function App() {
 
   // Reset choices & increase turn.
   const resetTurn = () => {
-    setChoiceOne(null);
-    setChoiceTwo(null);
+    setCardOne(null);
+    setCardTwo(null);
     setTurns(prevTurns => prevTurns + 1);
     setDisabled(false);    
   }

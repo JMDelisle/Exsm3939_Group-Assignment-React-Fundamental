@@ -1,9 +1,15 @@
+body{
+  background-image: url(../public/img/background.jpg);
+  background-size: cover;
+}
+
 .App {
-  max-width: 860px;
+  max-width: 860px; 
   margin: 40px auto;
-  background-image:url(../public/img/audi.jpg);
+  background-image:url(../public/img/audi.jpg); 
   background-repeat: no-repeat;
   background-size: auto;
+  
 }
 
 button {

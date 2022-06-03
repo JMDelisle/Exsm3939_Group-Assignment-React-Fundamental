@@ -1,5 +1,5 @@
 import './App.css';
-import React, { Dispatch, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MemoryCard from './components/MemoryCard';
 import Timer from './Timer';
 

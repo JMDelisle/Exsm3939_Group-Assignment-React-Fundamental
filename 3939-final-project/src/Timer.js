@@ -17,15 +17,8 @@ class Timer extends Component {
                 this.setState((oldState)=>{
                     return {seconds: oldState.seconds + 1};});}, 1000)
      };
-        this.tick = this.tick.bind(this);
+       
     }
-
- tick()
-  {
-     this.interval = setInterval(()=>{this.setState(prevState=>({seconds:prevState.seconds+1}));
-  },1000);
-  }   
-
 
 componentWillUnmount()
 {

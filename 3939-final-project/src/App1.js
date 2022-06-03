@@ -99,8 +99,9 @@ function App() {
           />
         ))}     
       
-       {gameActive ? <div><p>Turns: {turns}</p><p>Seconds: <Timer /></p> </div> : <p>Not started.</p>} 
+      
         </div>
+        {gameActive ? <div className='flex'><p className='flex'>Seconds: <Timer /></p><p className='flex'>Turns: {turns}</p> </div> : <p>Not started.</p>}  
       </div>
     </div>
   );

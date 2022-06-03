@@ -34,8 +34,10 @@ button:hover {
   grid-gap: 20px;
 }
 
-/*.hidden
-{
-  display: none;
-
-}*/
+.flex
+{  
+  display:flex;
+  align-items: center;
+  justify-content: space-evenly;  
+  
+}

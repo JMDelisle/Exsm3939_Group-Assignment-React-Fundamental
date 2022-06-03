@@ -20,8 +20,8 @@ const images = [
 function App() {
   const [cards, setCards] = useState([]);
   const [turns, setTurns] = useState(0);
-  const [choiceOne, setCardOne] = useState(null);
-  const [choiceTwo, SetCardtwo] = useState(null);
+  const [cardOne, setCardOne] = useState(null);
+  const [cardTwo, setCardTwo] = useState(null);
   const [disabled, setDisabled] = useState(false);
   const [gameActive, setGameActive]= useState(false);    //This is to check boolean gameActive; is true, display timer/counter div.
   
@@ -42,18 +42,18 @@ function App() {
 
   // Handle a choice.
   const handleChoice = (card) => {
-    choiceOne ? setCardTwo(card) : setCardOne(card);
+    cardOne ? setCardTwo(card) : setCardOne(card);
   }
 
   // Compare two selected cards.
   useEffect(() => {
-    if (choiceOne && choiceTwo) {
+    if (cardOne && cardTwo) {
       setDisabled(true);
 
-      if (choiceOne.src === choiceTwo.src) {
+      if (cardOne.src === cardTwo.src) {
         setCards(prevCards => {
           return prevCards.map(card => {
-            if (card.src === choiceOne.src) {
+            if (card.src === cardOne.src) {
               return { ...card, matched: true }
             } else {
               return card
@@ -66,7 +66,7 @@ function App() {
         setTimeout(() => resetTurn(), 1000)
       }
     }
-  }, [choiceOne, choiceTwo])
+  }, [cardOne, cardTwo])
 
   console.log(cards)
 
@@ -95,7 +95,7 @@ function App() {
             key={card.id}
             card={card}
             handleChoice={handleChoice}
-            flipped={card === choiceOne || card === choiceTwo || card.matched}
+            flipped={card === cardOne || card === cardTwo || card.matched}
             disabled={disabled}
           />
         ))}     

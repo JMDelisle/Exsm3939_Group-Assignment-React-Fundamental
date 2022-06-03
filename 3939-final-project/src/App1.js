@@ -12,8 +12,8 @@ const images = [
   { "src": "/img/ford.jpg", matched: false },
   { "src": "/img/mercedes.jpg", matched: false },
   { "src": "/img/rangerover.jpg", matched: false },
-  { "src": "/img/cool3 (1).jpg", matched: false },
-  { "src": "/img/cool4 (1).jpg", matched: false }
+  { "src": "/img/mercedes2.jpg", matched: false },
+  { "src": "/img/mclaren.jpg", matched: false }
 ]
   
 

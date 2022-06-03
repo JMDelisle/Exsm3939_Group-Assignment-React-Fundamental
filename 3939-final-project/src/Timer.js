@@ -25,8 +25,6 @@ componentWillUnmount()
 
   clearInterval(this.interval);
 }
-
-   
     render() {
         return (
               <div>

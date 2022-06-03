@@ -26,6 +26,8 @@ function App() {
   const [gameActive, setGameActive]= useState(false);    //This is to check boolean gameActive; is true, display timer/counter div.
   
 
+
+
   // shuffle cards
   const shuffleCards = () => {
     const shuffle = [...images, ...images]
@@ -38,8 +40,6 @@ function App() {
     setTurns(0);
     
    }
-
-
   // Handle a choice.
   const handleChoice = (card) => {
     cardOne ? setCardTwo(card) : setCardOne(card);
@@ -68,8 +68,7 @@ function App() {
     }
   }, [cardOne, cardTwo])
 
-  console.log(cards)
-
+  
   // Reset choices & increase turn.
   const resetTurn = () => {
     setCardOne(null);
@@ -87,9 +86,9 @@ function App() {
     <div className="App">
       <h1>"Match My Ride" the Memory Game</h1>
        <h5>To start a game, click the "Start" button below. But beware, as soon as you click the button and the game starts, the timer starts too!</h5>
-      <button onClick={() =>{shuffleCards();setGameActive(true);}}>Start New Game</button>  {/* onClick={shuffleCards}  */}
-    <div className='hidden' id="timerDisplay">
-      <div class="card-grid">
+      <button onClick={() =>{shuffleCards();setGameActive(true);}}>Start New Game</button>  {/* onClick={shuffleCards} //   onClick={() =>{shuffleCards();setGameActive(true);}} */}
+    <div className="hidden" id="timerDisplay">
+      <div className="card-grid">
         {cards.map(card => (
           <MemoryCard
             key={card.id}
@@ -100,10 +99,11 @@ function App() {
           />
         ))}     
       
-       {()=>{return (gameActive ? <div><p>Turns: {turns}</p><p>Seconds: <Timer /></p> </div>: "");} } 
-        
+       {()=>{return ((gameActive) ? <div><p>Turns: {turns}</p><p>Seconds: <Timer /></p> </div>: "");} } 
+        Timer: <Timer />
+      
         </div>
-      </div> 
+      </div>
     </div>
   );
 }

@@ -23,7 +23,7 @@ function App() {
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
   const [disabled, setDisabled] = useState(false);
-  const [gameActive, setGameActive]= useState(false);
+  const [gameActive, setGameActive]= useState(false);    //This is to check boolean gameActive; is true, display timer/counter div.
   
 
   // shuffle cards
@@ -83,12 +83,10 @@ function App() {
   //  shuffleCards();
  // }, [])
 
-
-
   return (
     <div className="App">
       <h1>"Match My Ride" the Memory Game</h1>
-       <h4>To start a game, click the "Start" button below. But beware, as soon as you click the button and the game starts, the timer starts too!</h4>
+       <h5>To start a game, click the "Start" button below. But beware, as soon as you click the button and the game starts, the timer starts too!</h5>
       <button onClick={() =>{shuffleCards();setGameActive(true);}}>Start New Game</button>  {/* onClick={shuffleCards}  */}
     <div className='hidden' id="timerDisplay">
       <div class="card-grid">

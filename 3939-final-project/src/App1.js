@@ -99,9 +99,7 @@ function App() {
           />
         ))}     
       
-       {()=>{return ((gameActive) ? <div><p>Turns: {turns}</p><p>Seconds: <Timer /></p> </div>: "");} } 
-        Timer: <Timer />
-      
+       {gameActive ? <div><p>Turns: {turns}</p><p>Seconds: <Timer /></p> </div> : <p>Not started.</p>} 
         </div>
       </div>
     </div>

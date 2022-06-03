@@ -4,7 +4,6 @@ import MemoryCard from './components/MemoryCard';
 import Timer from './Timer';
 
 
-
 const images = [
   { "src": "/img/audi.jpg", matched: false },
   { "src": "/img/bmw.jpg", matched: false },
@@ -25,8 +24,11 @@ function App() {
   const [disabled, setDisabled] = useState(false);
   const [gameActive, setGameActive]= useState(false);    //This is to check boolean gameActive; is true, display timer/counter div.
   
+  const refreshPage=()=>{
 
-
+    window.location.reload();       //When the reload/reset button is pressed, reload the page to restart the game and the timer together.
+    
+  }
 
   // shuffle cards
   const shuffleCards = () => {
@@ -77,16 +79,19 @@ function App() {
     setDisabled(false);    
   }
 
-  // start a new game automatically
- // useEffect(() => {
-  //  shuffleCards();
- // }, [])
+  // Set focus on the "Start" button automatically when the page loads.
+  useEffect(() => {
+    window.document.getElementById("startButton").focus();
+  }, [])
 
   return (
     <div className="App">
       <h1>"Match My Ride" the Memory Game</h1>
        <h5>To start a game, click the "Start" button below. But beware, as soon as you click the button and the game starts, the timer starts too!</h5>
-      <button onClick={() =>{shuffleCards();setGameActive(true);}}>Start New Game</button>  {/* onClick={shuffleCards} //   onClick={() =>{shuffleCards();setGameActive(true);}} */}
+     <div className="flex">
+        <button className="flex" id="startButton" onClick={() =>{shuffleCards();setGameActive(true);}}>Start New Game</button>
+        <button className="flex" onClick={refreshPage}>Reset/Reload</button>  
+     </div>
     <div className="hidden" id="timerDisplay">
       <div className="card-grid">
         {cards.map(card => (
@@ -97,11 +102,9 @@ function App() {
             flipped={card === cardOne || card === cardTwo || card.matched}
             disabled={disabled}
           />
-        ))}     
-      
-      
+        ))}   
         </div>
-        {gameActive ? <div className='flex'><p className='flex'>Seconds: <Timer /></p><p className='flex'>Turns: {turns}</p> </div> : <p>Not started.</p>}  
+        {gameActive ? <div className='flex'><p className='flex'>Seconds: <Timer /></p><p className='flex'>Turns: {turns}</p> </div> : ""}  
       </div>
     </div>
   );

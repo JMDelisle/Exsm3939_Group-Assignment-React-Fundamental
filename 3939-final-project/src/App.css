@@ -6,7 +6,6 @@ body{
 .App {
   max-width: 860px; 
   margin: 40px auto;
-  background-image:url(../public/img/audi.jpg); 
   background-repeat: no-repeat;
   background-size: auto;
   
@@ -29,7 +28,7 @@ button:hover {
 }
 
 .card-grid{
-  margin-top: 50px;
+  margin-top: 35px;
   display:grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 20px;

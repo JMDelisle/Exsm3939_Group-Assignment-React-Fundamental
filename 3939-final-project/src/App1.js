@@ -86,14 +86,14 @@ function App() {
 
   return (
     <div className="App">
-      <h1>"Match My Ride" the Memory Game</h1>
+      <img src={require('../src/title.png')} alt= ''/>
        <h5>To start a game, click the "Start" button below. But beware, as soon as you click the button and the game starts, the timer starts too!</h5>
      <div className="flex">
         <button className="flex" id="startButton" onClick={() =>{shuffleCards();setGameActive(true);}}>Start New Game</button>
-        <button className="flex" onClick={refreshPage}>Reset/Reload</button>  
+        <button className="flex" id="resetButton" onClick={refreshPage}>Reset/Reload</button>  
      </div>
     <div className="hidden" id="timerDisplay">
-      <div className="card-grid">
+      <div className="card-grid" id="cards">
         {cards.map(card => (
           <MemoryCard
             key={card.id}
@@ -104,7 +104,7 @@ function App() {
           />
         ))}   
         </div>
-        {gameActive ? <div className='flex'><p className='flex'>Seconds: <Timer /></p><p className='flex'>Turns: {turns}</p> </div> : ""}  
+        {gameActive ? <div className='flex'><p className='flex' id="timer" >Seconds: <Timer /></p><p className='flex' id="turns" >Turns: {turns}</p> </div> : ""}  
       </div>
     </div>
   );

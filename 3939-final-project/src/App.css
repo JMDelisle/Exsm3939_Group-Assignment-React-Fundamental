@@ -28,7 +28,8 @@ button:hover {
 }
 
 .card-grid{
-  margin-top: 35px;
+  position: relative;
+
   display:grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 20px;
@@ -39,4 +40,54 @@ button:hover {
   display:flex;
   align-items: center;
   justify-content: space-evenly;    
+}
+
+img {
+  position: relative;
+  top: -35px;
+  right: -35px;
+  height: 150px;
+  width: 925px;
+}
+
+h5 {
+  position: relative;
+  top: -80px;
+}
+
+#resetButton {
+  position: relative;
+  height: 40px;
+  width: 220px;
+  top: -90px;
+  left: -50px;
+}
+
+#startButton {
+  position: relative;
+  height: 40px;
+  width: 220px;
+  top: -90px;
+  right: -50px;
+}
+
+#cards {
+  position: relative;
+  top: -30px;
+  left: -37px;
+}
+
+p {
+  position: relative;
+  top: -60px;
+}
+
+#timer {
+  position: relative;
+  right: -485px;
+}
+
+#turns {
+  position: relative;
+  left: -500px;
 }

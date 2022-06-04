@@ -14,21 +14,22 @@ class Timer extends Component {
        this.state = {
             seconds: Number(props.start??0),
             timer: setInterval(() => {
-                this.setState((oldState)=>{
-                    return {seconds: oldState.seconds + 1};});}, 1000)
+               this.setState((oldState)=>{
+
+                return {seconds: oldState.seconds + 1};});}, 1000)
+                   //  return {seconds<=180 ? seconds: oldState.seconds + 1 : "Time Up!!"};});}, 1000)
      };
        
     }
 
 componentWillUnmount()
 {
-
-  clearInterval(this.interval);
+   clearInterval(this.interval);
 }
     render() {
         return (
-              <div>
-            {this.state.seconds}
+            <div>
+              {this.state.seconds}
             </div>
            
         );

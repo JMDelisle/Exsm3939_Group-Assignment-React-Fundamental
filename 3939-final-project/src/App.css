@@ -84,6 +84,7 @@ p {
 
 #timer {
   position: relative;
+  top: -62px;
   right: -485px;
 }
 

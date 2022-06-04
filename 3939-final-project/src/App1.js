@@ -56,6 +56,7 @@ function App() {
         setCards(prevCards => {
           return prevCards.map(card => {
             if (card.src === cardOne.src) {
+
               return { ...card, matched: true }
             } else {
               return card
@@ -104,7 +105,7 @@ function App() {
           />
         ))}   
         </div>
-        {gameActive ? <div className='flex'><p className='flex' id="timer" >Seconds: <Timer /></p><p className='flex' id="turns" >Turns: {turns}</p> </div> : ""}  
+        {gameActive ? <div className='flex'><div className='flex' id="timer" >Seconds: <Timer /></div><p className='flex' id="turns" >Turns: {turns}</p> </div> : ""}  
       </div>
     </div>
   );

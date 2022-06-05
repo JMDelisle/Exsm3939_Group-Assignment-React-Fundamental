@@ -1,5 +1,7 @@
 We as the group decided to do a memory game and watched a video with tutorial on how to build the game. We as a group had decided on how we all of us are doing section of the codes to eliminate any confusion. All credit goes to The Net Ninja on his step by step on how to build a functional memory card game. 
 
+The game is very simple, utilizing 8 pairs of matching photos.
+
 
 
 

@@ -23,7 +23,11 @@ function App() {
   const [cardTwo, setCardTwo] = useState(null);
   const [disabled, setDisabled] = useState(false);
   const [gameActive, setGameActive]= useState(false);    //This is to check boolean gameActive; is true, display timer/counter div.
-  
+  const [gameComplete, setGameComplete] = useState(false);
+  const [pairCount, setPairCount] = useState(0);
+   //let pairCount=0;
+
+
   const refreshPage=()=>{
 
     window.location.reload();       //When the reload/reset button is pressed, reload the page to restart the game and the timer together.
@@ -56,6 +60,13 @@ function App() {
         setCards(prevCards => {
           return prevCards.map(card => {
             if (card.src === cardOne.src) {
+              setPairCount((pairCount) => pairCount+1);
+                 console.log(pairCount);
+                 if(pairCount>=8)
+                 {
+
+                    setGameComplete(true);
+                 }
               return { ...card, matched: true }
             } else {
               return card
@@ -104,7 +115,7 @@ function App() {
           />
         ))}   
         </div>
-        {gameActive ? <div className='flex'><div className='flex' id="timer" >Seconds: <Timer /></div><p className='flex' id="turns" >Turns: {turns}</p> </div> : ""}  
+        {gameActive ? <div className='flex'><div className='flex' id="timer" >Seconds: <Timer active={!gameComplete}/></div><p className='flex' id="turns" >Turns: {turns}</p> </div> : ""}  
       </div>
     </div>
   );

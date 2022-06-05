@@ -6,12 +6,12 @@ import Timer from './Timer';
 
 const images = [
   { "src": "/img/audi.jpg", matched: false },
-  { "src": "/img/bmw.jpg", matched: false },
-  { "src": "/img/ferrari.jpg", matched: false },
+  /*{ "src": "/img/bmw.jpg", matched: false },
+  /*{ "src": "/img/ferrari.jpg", matched: false },
   { "src": "/img/ford.jpg", matched: false },
   { "src": "/img/mercedes.jpg", matched: false },
   { "src": "/img/rangerover.jpg", matched: false },
-  { "src": "/img/mercedes2.jpg", matched: false },
+  { "src": "/img/mercedes2.jpg", matched: false },*/
   { "src": "/img/mclaren.jpg", matched: false }
 ]
   
@@ -53,20 +53,23 @@ function App() {
 
   // Compare two selected cards.
   useEffect(() => {
+    console.log("Use effect fired from 55.");
     if (cardOne && cardTwo) {
       setDisabled(true);
 
       if (cardOne.src === cardTwo.src) {
+        setPairCount((pairCount) => {
+          console.log(pairCount+1);
+          if (pairCount >= 1) {
+            console.log("Game complete!!!");
+            setGameComplete(true);
+          }
+          return pairCount+1;
+        });
+        
         setCards(prevCards => {
           return prevCards.map(card => {
             if (card.src === cardOne.src) {
-              setPairCount((pairCount) => pairCount+1);
-                 console.log(pairCount);
-                 if(pairCount>=8)
-                 {
-
-                    setGameComplete(true);
-                 }
               return { ...card, matched: true }
             } else {
               return card
@@ -79,7 +82,7 @@ function App() {
         setTimeout(() => resetTurn(), 1000)
       }
     }
-  }, [cardOne, cardTwo])
+  }, [cardOne, cardTwo, pairCount])
 
   
   // Reset choices & increase turn.
@@ -92,6 +95,7 @@ function App() {
 
   // Set focus on the "Start" button automatically when the page loads.
   useEffect(() => {
+    console.log("Use effect fired from 96.");
     window.document.getElementById("startButton").focus();
   }, [])
 

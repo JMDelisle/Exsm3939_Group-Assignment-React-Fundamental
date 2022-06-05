@@ -1,39 +1,43 @@
 import React, { Component } from 'react';
 import './App1.js';
 import './App.css';
- 
+
 
 class Timer extends Component {
 
     constructor(props) {
         super(props);
-               
-       this.state = {
-            active:props.active,
-            seconds: Number(props.start??0),
+
+        this.state = {
+            active: props.active,
+            mounted: false,
+            seconds: Number(props.start ?? 0),
             timer: setInterval(() => {
-                if(props.active)
-                {
-               this.setState((oldState)=>{
+                if (this.state.mounted && this.props.active) {
+                    this.setState((oldState) => {
+                        return { seconds: oldState.seconds + 1 };
+                    });
+                }
+            }, 1000)
 
-                return {seconds: oldState.seconds + 1};}); }}, 1000)
-              
-     };
-    }  
-   
+        };
+    }
 
-componentWillUnmount()
-{
-   clearInterval(this.interval);
-}
-
+    componentDidMount() {
+        this.setState({
+            mounted: true
+        });
+    }
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
 
     render() {
         return (
             <div>
-              {this.state.seconds}
+                {this.state.seconds}
             </div>
-           
+
         );
     }
 }

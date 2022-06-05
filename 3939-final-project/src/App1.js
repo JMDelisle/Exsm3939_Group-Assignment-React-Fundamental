@@ -1,6 +1,8 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MemoryCard from './components/MemoryCard';
+import Timer from './Timer';
+
 
 const images = [
   { "src": "/img/audi.jpg", matched: false },
@@ -9,10 +11,10 @@ const images = [
   { "src": "/img/ford.jpg", matched: false },
   { "src": "/img/mercedes.jpg", matched: false },
   { "src": "/img/rangerover.jpg", matched: false },
-  { "src": "/img/mclaren.jpg", matched: false },
-  { "src": "/img/mercedes2.jpg", matched: false }
+  { "src": "/img/mercedes2.jpg", matched: false },
+  { "src": "/img/mclaren.jpg", matched: false }
 ]
-
+  
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -20,6 +22,13 @@ function App() {
   const [cardOne, setCardOne] = useState(null);
   const [cardTwo, setCardTwo] = useState(null);
   const [disabled, setDisabled] = useState(false);
+  const [gameActive, setGameActive]= useState(false);    //This is to check boolean gameActive; is true, display timer/counter div.
+  
+  const refreshPage=()=>{
+
+    window.location.reload();       //When the reload/reset button is pressed, reload the page to restart the game and the timer together.
+    
+  }
 
   // shuffle cards
   const shuffleCards = () => {
@@ -31,8 +40,8 @@ function App() {
     setCardTwo(null);
     setCards(shuffle);
     setTurns(0);
-  }
-
+    
+   }
   // Handle a choice.
   const handleChoice = (card) => {
     cardOne ? setCardTwo(card) : setCardOne(card);
@@ -61,27 +70,30 @@ function App() {
     }
   }, [cardOne, cardTwo])
 
-  console.log(cards)
-
+  
   // Reset choices & increase turn.
   const resetTurn = () => {
     setCardOne(null);
     setCardTwo(null);
     setTurns(prevTurns => prevTurns + 1);
-    setDisabled(false);
+    setDisabled(false);    
   }
 
-  // start a new game automatically
+  // Set focus on the "Start" button automatically when the page loads.
   useEffect(() => {
-    shuffleCards();
+    window.document.getElementById("startButton").focus();
   }, [])
 
   return (
     <div className="App">
-      <h1>"Match My Ride" the Memory Game</h1>
-      <button onClick={shuffleCards}>Start New Game</button>
-
-      <div class="card-grid">
+      <img src={require('../src/title.png')} alt= ''/>
+       <h5>To start a game, click the "Start" button below. But beware, as soon as you click the button and the game starts, the timer starts too!</h5>
+     <div className="flex">
+        <button className="flex" id="startButton" onClick={() =>{shuffleCards();setGameActive(true);}}>Start New Game</button>
+        <button className="flex" id="resetButton" onClick={refreshPage}>Reset/Reload</button>  
+     </div>
+    <div className="hidden" id="timerDisplay">
+      <div className="card-grid" id="cards">
         {cards.map(card => (
           <MemoryCard
             key={card.id}
@@ -90,9 +102,10 @@ function App() {
             flipped={card === cardOne || card === cardTwo || card.matched}
             disabled={disabled}
           />
-        ))}
+        ))}   
+        </div>
+        {gameActive ? <div className='flex'><div className='flex' id="timer" >Seconds: <Timer /></div><p className='flex' id="turns" >Turns: {turns}</p> </div> : ""}  
       </div>
-      <p>Turns: {turns}</p>
     </div>
   );
 }

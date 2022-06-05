@@ -6,12 +6,12 @@ import Timer from './Timer';
 
 const images = [
   { "src": "/img/audi.jpg", matched: false },
-  /*{ "src": "/img/bmw.jpg", matched: false },
-  /*{ "src": "/img/ferrari.jpg", matched: false },
+  { "src": "/img/bmw.jpg", matched: false },
+  { "src": "/img/ferrari.jpg", matched: false },
   { "src": "/img/ford.jpg", matched: false },
   { "src": "/img/mercedes.jpg", matched: false },
   { "src": "/img/rangerover.jpg", matched: false },
-  { "src": "/img/mercedes2.jpg", matched: false },*/
+  { "src": "/img/mercedes2.jpg", matched: false },
   { "src": "/img/mclaren.jpg", matched: false }
 ]
   
@@ -25,7 +25,7 @@ function App() {
   const [gameActive, setGameActive]= useState(false);    //This is to check boolean gameActive; is true, display timer/counter div.
   const [gameComplete, setGameComplete] = useState(false);
   const [pairCount, setPairCount] = useState(0);
-   //let pairCount=0;
+  
 
 
   const refreshPage=()=>{
@@ -53,15 +53,15 @@ function App() {
 
   // Compare two selected cards.
   useEffect(() => {
-    console.log("Use effect fired from 55.");
+    
     if (cardOne && cardTwo) {
       setDisabled(true);
 
       if (cardOne.src === cardTwo.src) {
         setPairCount((pairCount) => {
-          console.log(pairCount+1);
+         
           if (pairCount >= 1) {
-            console.log("Game complete!!!");
+            
             setGameComplete(true);
           }
           return pairCount+1;
@@ -95,7 +95,7 @@ function App() {
 
   // Set focus on the "Start" button automatically when the page loads.
   useEffect(() => {
-    console.log("Use effect fired from 96.");
+   
     window.document.getElementById("startButton").focus();
   }, [])
 
